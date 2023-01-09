@@ -17,5 +17,15 @@ def type_coordonnee(coord: tuple) -> bool:
     """
     return type(coord) == tuple and len(coord) == 2 and type(coord[0]) == int and type(coord[1]) == int \
         and coord[0] >= 0 and coord[1] >= 0
+''''''
+def construireCoordonnee(num_ligne : int, num_colonne : int) -> tuple:
+    return (num_ligne, num_colonne)
+
+def getLigneCoordonnee(coor : tuple) -> int:
+    return coor[0]
+
+def getColonneCoordonnee(coor : tuple) -> int:
+    return coor[1]
+
 
 
