@@ -39,7 +39,7 @@ def isVisibleCellule(cell : dict) -> bool:
 
 def setContenuCellule(cell : dict, cont : int) -> None:
     if isContenuCorrect(cont) != True:
-        raise ValueError("setContenuCellule : la valeur du contenu", cont, "n’est pas correcte")
+        raise ValueError("setContenuCellule : la valeur du contenu", cont, "n’est pas correcte.")
     else:
         cell[const.CONTENU] = cont
     return None
