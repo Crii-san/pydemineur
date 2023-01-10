@@ -27,9 +27,32 @@ def isContenuCorrect(cont : int) -> bool:
         a = False
     return a
 
-def construireCellule(cont = 0, b = False) -> dict:
-    lst = [(const.CONTENU, cont), (const.VISIBLE, b)]
+def construireCellule(cont = 0, visible = False) -> dict:
+    lst = [(const.CONTENU, cont), (const.VISIBLE, visible)]
     return dict(lst)
-'''
 
-'''
+def getContenuCellule(cell : dict) -> int:
+    return cell[const.CONTENU]
+
+def isVisibleCellule(cell : dict) -> bool:
+    return cell[const.VISIBLE]
+
+def setContenuCellule(cell : dict, cont : int) -> None:
+    if isContenuCorrect(cont) != True:
+        raise ValueError("setContenuCellule : la valeur du contenu", cont, "n’est pas correcte")
+    else:
+        cell[const.CONTENU] = cont
+    return None
+
+def setVisibleCellule(cell : dict, visible : bool) -> None:
+    cell[const.VISIBLE] = visible
+    return None
+
+def contientMineCellule(cell : dict) -> bool:
+    a = 0
+    if getContenuCellule(cell) == -1:
+        a = True
+    else:
+        a = False
+    return a
+
