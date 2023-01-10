@@ -1,6 +1,5 @@
 # Model/Cellule.py
 #
-
 from Model.Constantes import *
 
 #
@@ -28,6 +27,9 @@ def isContenuCorrect(cont : int) -> bool:
         a = False
     return a
 
+def construireCellule(cont = 0, b = False) -> dict:
+    lst = [(const.CONTENU, cont), (const.VISIBLE, b)]
+    return dict(lst)
 '''
 
 '''
