@@ -121,5 +121,36 @@ def setVisibleGrilleDemineur(grille : list, coord : tuple, visibilite : bool):
 def contientMineGrilleDemineur(grille : list, coord : tuple) -> bool:
     return contientMineCellule(getCelluleGrilleDemineur(grille, coord))
 
-
+def getCoordonneeVoisinsGrilleDemineur(grille : list, coord : tuple) -> list:
+    if not (type_grille_demineur(grille) == True and type_coordonnee(coord) == True):
+        raise TypeError("getCoordonneeVoisinsGrilleDemineur : un des paramètres n’est pas du bon type.")
+    if not isCoordonneeCorrecte(grille, coord) == True:
+        raise IndexError("getCoordonneeVoisinsGrilleDemineur : la coordonnée n’est pas dans la grille.")
+    liste = []
+    u, v = coord
+    hautG = u - 1, v - 1
+    haut = u - 1, v
+    hautD = u - 1, v + 1
+    G = u, v - 1
+    D = u, v + 1
+    basG = u + 1, v - 1
+    bas = u + 1, v
+    basD = u + 1, v + 1
+    if isCoordonneeCorrecte(grille, hautG) == True:
+        liste.append(hautG)
+    if isCoordonneeCorrecte(grille, haut) == True:
+        liste.append(haut)
+    if isCoordonneeCorrecte(grille, hautD) == True:
+        liste.append(hautD)
+    if isCoordonneeCorrecte(grille, G) == True:
+        liste.append(G)
+    if isCoordonneeCorrecte(grille, D) == True:
+        liste.append(D)
+    if isCoordonneeCorrecte(grille, basG) == True:
+        liste.append(basG)
+    if isCoordonneeCorrecte(grille, bas) == True:
+        liste.append(bas)
+    if isCoordonneeCorrecte(grille, basD) == True:
+        liste.append(basD)
+    return liste
 
