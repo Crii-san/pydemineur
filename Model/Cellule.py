@@ -27,28 +27,46 @@ def isContenuCorrect(cont : int) -> bool:
         a = False
     return a
 
-def construireCellule(cont = 0, visible = False) -> dict:
+def construireCellule(cont : int = 0, visible : bool = False) -> dict:
+    if isContenuCorrect(cont) == False:
+        raise ValueError("construireCellule : le contenu", cont, "n’est pas correct")
+    if not type(visible) == bool:
+        raise TypeError("construireCellule : le second paramètre", type(visible), "n’est pas un booléen")
     lst = [(const.CONTENU, cont), (const.VISIBLE, visible)]
     return dict(lst)
 
 def getContenuCellule(cell : dict) -> int:
+    if type_cellule(cell) == False:
+        raise TypeError("getContenuCellule : Le paramètre n’est pas une cellule.")
     return cell[const.CONTENU]
 
 def isVisibleCellule(cell : dict) -> bool:
+    if type_cellule(cell) == False:
+        raise TypeError("isVisibleCellule : Le paramètre n’est pas une cellule.")
     return cell[const.VISIBLE]
 
 def setContenuCellule(cell : dict, cont : int) -> None:
-    if isContenuCorrect(cont) != True:
+    if isContenuCorrect(cont) == False and type(cont) == int:
         raise ValueError("setContenuCellule : la valeur du contenu", cont, "n’est pas correcte.")
+    elif isContenuCorrect(cont) == False and type(cont) != int:
+        raise TypeError("setContenuCellule : la valeur du contenu", cont, "n’est pas correcte.")
+    if type_cellule(cell) == False:
+        raise TypeError("setContenuCellule : Le premier paramètre n’est pas une cellule.")
+    if not type(cont) == int:
+        raise TypeError("setContenuCellule : Le second paramètre n’est pas un entier.")
     else:
         cell[const.CONTENU] = cont
     return None
 
 def setVisibleCellule(cell : dict, visible : bool) -> None:
+    if not type_cellule(cell) == True:
+        raise TypeError("setVisibleCellule : Le premier paramètre n’est pas une cellule")
     cell[const.VISIBLE] = visible
     return None
 
 def contientMineCellule(cell : dict) -> bool:
+    if not type_cellule(cell) == True:
+        raise TypeError("contientMineCellule : Le paramètre n’est pas une cellule.")
     a = 0
     if getContenuCellule(cell) == -1:
         a = True

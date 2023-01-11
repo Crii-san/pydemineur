@@ -54,12 +54,24 @@ def type_grille_demineur(grille: list) -> bool:
 def construireGrilleDemineur(nbL : int, nbC : int) -> list:
     if nbL <= 0 or nbC <= 0:
         raise ValueError("construireGrilleDemineur : Le nombre de lignes", nbL, "ou de colonnes" , nbC, "est négatif ou nul.")
-    else:
-        a = []
-        for i in range(nbL):
-            b = []
-            for j in range(nbC):
-                b.append(construireCellule())
+    a = []
+    for i in range(nbL):
+        b = []
+        for j in range(nbC):
+            b.append(construireCellule())
         a.append(b)
+    return a
+
+def getNbLignesGrilleDemineur(grille : list) -> int:
+    if not type_grille_demineur(grille):
+        raise TypeError("getNbLignesGrilleDemineur : Le paramètre n’est pas une grille.")
+    return len(grille)
+
+def getNbColonnesGrilleDemineur(grille : list) -> int:
+    if not type_grille_demineur(grille):
+        raise TypeError("getNbColonnesGrilleDemineur : Le paramètre n’est pas une grille.")
+    a = 0
+    for i in grille:
+        a = len(i)
     return a
 
