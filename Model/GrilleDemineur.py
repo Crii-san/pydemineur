@@ -75,3 +75,36 @@ def getNbColonnesGrilleDemineur(grille : list) -> int:
         a = len(i)
     return a
 
+def isCoordonneeCorrecte(grille : list, coord : tuple) -> bool:
+    if not (type(grille) == list or type(coord) == tuple or type_grille_demineur(grille) == True or type_coordonnee(coord) == True):
+        raise TypeError("isCoordonneeCorrecte : un des paramètres n’est pas du bon type.")
+    if getLigneCoordonnee(coord) >= getNbLignesGrilleDemineur(grille):
+        a = False
+    elif getLigneCoordonnee(coord) < getNbLignesGrilleDemineur(grille):
+        if getLigneCoordonnee(coord) >= 0:
+            a = True
+        else:
+            a = False
+    if getColonneCoordonnee(coord) >= getNbColonnesGrilleDemineur(grille):
+        b = False
+    elif getColonneCoordonnee(coord) < getNbColonnesGrilleDemineur(grille):
+        if getColonneCoordonnee(coord) >= 0:
+            b = True
+        else:
+            b = False
+    return bool(a and b)
+
+def getCelluleGrilleDemineur(grille : list, coord : tuple) -> dict:
+    if not (type(grille) == list or type(coord) == tuple or type_grille_demineur(grille) == True or type_coordonnee(coord) == True):
+        raise TypeError("getCelluleGrilleDemineur : un des paramètres n’est pas du bon type.")
+    if isCoordonneeCorrecte(grille, coord) == False:
+        raise IndexError("getCelluleGrilleDemineur : coordonnée non contenue dans la grille")
+    ligne = getLigneCoordonnee(coord)
+    colonne = getColonneCoordonnee(coord)
+    cellule = ""
+    ligne2 = grille[ligne]
+    cellule = ligne2[colonne]
+    return cellule
+
+
+
