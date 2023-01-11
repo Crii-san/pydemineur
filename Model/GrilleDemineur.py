@@ -11,6 +11,7 @@ from itertools import filterfalse
 #
 # Il s'agira d'une liste de liste
 
+from random import *
 
 def type_grille_demineur(grille: list) -> bool:
     """
@@ -153,4 +154,20 @@ def getCoordonneeVoisinsGrilleDemineur(grille : list, coord : tuple) -> list:
     if isCoordonneeCorrecte(grille, basD) == True:
         liste.append(basD)
     return liste
+
+def placerMinesGrilleDemineur(grille : list, nb : int, coord : tuple):
+    liste = []
+    nbCellules = getNbLignesGrilleDemineur(grille) * getNbColonnesGrilleDemineur(grille)
+    if nb < 0 or nb >= nbCellules:
+        raise ValueError("placerMinesGrilleDemineur : Nombre de bombes à placer incorrect ")
+    if not isCoordonneeCorrecte(grille, coord) == True:
+        raise IndexError("« placerMinesGrilleDemineur : la coordonnée n’est pas dans la grille.")
+    while len(liste) != nb:
+        a = construireCoordonnee(randint(0, getNbLignesGrilleDemineur(grille) -1), randint(0, getNbColonnesGrilleDemineur(grille) -1))
+        if a == coord:
+            a = construireCoordonnee(randint(0, getNbLignesGrilleDemineur(grille) -1), randint(0, getNbColonnesGrilleDemineur(grille) -1))
+        if not a in liste:
+            liste.append(a)
+    for i in range(len(liste)):
+        setContenuGrilleDemineur(grille, liste[i], -1)
 
