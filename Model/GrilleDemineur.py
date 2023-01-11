@@ -106,5 +106,20 @@ def getCelluleGrilleDemineur(grille : list, coord : tuple) -> dict:
     cellule = ligne2[colonne]
     return cellule
 
+def getContenuGrilleDemineur(grille : list, coord : tuple) -> int:
+    return getContenuCellule(getCelluleGrilleDemineur(grille, coord))
+
+def setContenuGrilleDemineur(grille : list, coord : tuple, cont : int):
+    setContenuCellule(getCelluleGrilleDemineur(grille, coord), cont)
+
+def isVisibleGrilleDemineur(grille : list, coord : tuple) -> bool:
+    return isVisibleCellule(getCelluleGrilleDemineur(grille, coord))
+
+def setVisibleGrilleDemineur(grille : list, coord : tuple, visibilite : bool):
+    setVisibleCellule(getCelluleGrilleDemineur(grille, coord), visibilite)
+
+def contientMineGrilleDemineur(grille : list, coord : tuple) -> bool:
+    return contientMineCellule(getCelluleGrilleDemineur(grille, coord))
+
 
 
