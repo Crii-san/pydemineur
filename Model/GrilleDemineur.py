@@ -170,6 +170,7 @@ def placerMinesGrilleDemineur(grille : list, nb : int, coord : tuple):
             liste.append(a)
     for i in range(len(liste)):
         setContenuGrilleDemineur(grille, liste[i], -1)
+    compterMinesVoisinesGrilleDemineur(grille)
 
 
 def compterMinesVoisinesGrilleDemineur(grille : list) -> None:
