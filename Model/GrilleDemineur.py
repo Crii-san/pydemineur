@@ -210,8 +210,8 @@ def getMinesRestantesGrilleDemineur(grille : list) -> int:
             if getAnnotationGrilleDemineur(grille, coord) == const.FLAG:
                 nb += 1
     return getNbMinesGrilleDemineur(grille) - nb
-
-#finir 90-92 et
+'''
+#finir 90-92 et 97-98
 def gagneGrilleDemineur(grille : list) -> bool:
     a = False
     for i in range(getNbLignesGrilleDemineur(grille)):
@@ -223,7 +223,7 @@ def gagneGrilleDemineur(grille : list) -> bool:
                     a = False
                     break
     return a
-
+'''
 def perduGrilleDemineur(grille : list) -> bool:
     a = False
     for i in range(getNbLignesGrilleDemineur(grille)):
@@ -233,6 +233,12 @@ def perduGrilleDemineur(grille : list) -> bool:
                 a = True
                 break
     return a
+
+def reinitialiserGrilleDemineur(grille : list):
+    for i in range(getNbLignesGrilleDemineur(grille)):
+        for j in range(getNbColonnesGrilleDemineur(grille)):
+            coord = (i, j)
+            reinitialiserCellule(getCelluleGrilleDemineur(grille, coord))
 
 
 
