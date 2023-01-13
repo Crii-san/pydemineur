@@ -210,20 +210,19 @@ def getMinesRestantesGrilleDemineur(grille : list) -> int:
             if getAnnotationGrilleDemineur(grille, coord) == const.FLAG:
                 nb += 1
     return getNbMinesGrilleDemineur(grille) - nb
-'''
+
 #finir 90-92 et 97-98
 def gagneGrilleDemineur(grille : list) -> bool:
-    a = False
+    a = True
     for i in range(getNbLignesGrilleDemineur(grille)):
         for j in range(getNbColonnesGrilleDemineur(grille)):
             coord = (i, j)
-            while (not contientMineGrilleDemineur(grille, coord)) and (isVisibleGrilleDemineur(grille, coord)):
-                a = True
-                if (not contientMineGrilleDemineur(grille, coord)) and (not isVisibleGrilleDemineur(grille, coord)):
-                    a = False
-                    break
+            if (contientMineGrilleDemineur(grille, coord) == False) and (isVisibleGrilleDemineur(grille, coord) == False):
+                a = False
+            elif (contientMineGrilleDemineur(grille, coord)) and isVisibleGrilleDemineur(grille, coord):
+                a = False
     return a
-'''
+
 def perduGrilleDemineur(grille : list) -> bool:
     a = False
     for i in range(getNbLignesGrilleDemineur(grille)):
@@ -234,11 +233,30 @@ def perduGrilleDemineur(grille : list) -> bool:
                 break
     return a
 
-def reinitialiserGrilleDemineur(grille : list):
+def reinitialiserGrilleDemineur(grille : list) -> None:
     for i in range(getNbLignesGrilleDemineur(grille)):
         for j in range(getNbColonnesGrilleDemineur(grille)):
             coord = (i, j)
             reinitialiserCellule(getCelluleGrilleDemineur(grille, coord))
+    return None
+
+#finir 103-111
+'''
+def decouvrirGrilleDemineur(grille : list, coord : tuple) -> set:
+    s = set()
+    setVisibleGrilleDemineur(grille, coord, True)
+    g = getCoordonneeVoisinsGrilleDemineur(grille, coord)
+    if getContenuGrilleDemineur(grille, coord) == 0:
+        for i in range(len(g)):
+            setVisibleGrilleDemineur(grille, g[i], True)
+            s.add(g[i])
+            if getContenuGrilleDemineur(grille, g[i]) == 0:
+                for j in getCoordonneeVoisinsGrilleDemineur(grille, g[i]):
+                    setVisibleGrilleDemineur(grille, g[j], True)
+                    s.add(g[j])
+    return s
+'''
+
 
 
 
