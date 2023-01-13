@@ -211,7 +211,6 @@ def getMinesRestantesGrilleDemineur(grille : list) -> int:
                 nb += 1
     return getNbMinesGrilleDemineur(grille) - nb
 
-#finir 90-92 et 97-98
 def gagneGrilleDemineur(grille : list) -> bool:
     a = True
     for i in range(getNbLignesGrilleDemineur(grille)):
@@ -220,6 +219,8 @@ def gagneGrilleDemineur(grille : list) -> bool:
             if (contientMineGrilleDemineur(grille, coord) == False) and (isVisibleGrilleDemineur(grille, coord) == False):
                 a = False
             elif (contientMineGrilleDemineur(grille, coord)) and isVisibleGrilleDemineur(grille, coord):
+                a = False
+            elif contientMineGrilleDemineur(grille, coord) == True and getAnnotationGrilleDemineur(grille, coord) != 'Flag':
                 a = False
     return a
 
