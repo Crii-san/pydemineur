@@ -102,7 +102,6 @@ def getCelluleGrilleDemineur(grille : list, coord : tuple) -> dict:
         raise IndexError("getCelluleGrilleDemineur : coordonnée non contenue dans la grille")
     ligne = getLigneCoordonnee(coord)
     colonne = getColonneCoordonnee(coord)
-    cellule = ""
     ligne2 = grille[ligne]
     cellule = ligne2[colonne]
     return cellule
@@ -241,7 +240,8 @@ def reinitialiserGrilleDemineur(grille : list) -> None:
             reinitialiserCellule(getCelluleGrilleDemineur(grille, coord))
     return None
 
-#finir 103-111
+#échec
+#la fonction empêche de cliquer sur les cases ne contenant pas de mine
 '''
 def decouvrirGrilleDemineur(grille : list, coord : tuple) -> set:
     s = set()
@@ -258,6 +258,66 @@ def decouvrirGrilleDemineur(grille : list, coord : tuple) -> set:
     return s
 '''
 
+#échec
+'''
+def simplifierGrilleDemineur(grille : list, coord : tuple) -> set:
+    res = ''
+    nbDrapeaux = 0
+    b = []
+    if isVisibleGrilleDemineur(grille, coord) == False:
+        res = set()
+    else:
+        a = getCoordonneeVoisinsGrilleDemineur(grille, coord)
+        for i in a:
+            if getAnnotationGrilleDemineur(grille, i) == 'Flag':
+                nbDrapeaux += 1
+            else :
+                b.append(i)
+                res.add(i)
+        if nbDrapeaux == getContenuGrilleDemineur(grille, coord):
+            for j in b:
+                setVisibleGrilleDemineur(grille, j, True)
+    return res
+'''
 
+#échec
 
+'''
+def simplifierGrilleDemineur(grille : list, coord : tuple) -> set:
+    ensemble = set()
+    nbrFlags = 0
+    coordVoisin = getCoordonneeVoisinsGrilleDemineur(grille, coord)
+    if isVisibleGrilleDemineur(grille, coord) == False:
+        return set()
+    else:
+        for i in range(len(coordVoisin)):
+            if grille[getNbLignesGrilleDemineur(coordVoisin)].get(const.ANNOTATION) == const.FLAG \
+                    or grille[getNbColonnesGrilleDemineur(coordVoisin)].get(const.ANNOTATION) == const.FLAG:
+                nbrFlags += 1
+        if getContenuGrilleDemineur(grille, coord) == nbrFlags:
+            for j in range(len(coordVoisin)):
+                if isVisibleGrilleDemineur(coordVoisin):
+                    if getAnnotationGrilleDemineur(grille, coordVoisin) == None:
+                        setVisibleGrilleDemineur(True)
+                        ensemble.add(coordVoisin)
+    return ensemble
+'''
+
+#échec
+'''
+def ajouterFlagsGrilleDemineur(grille : list, coord : tuple) -> list:
+    a = getCoordonneeVoisinsGrilleDemineur(grille, coord)
+    b = 0
+    c = set()
+    for i in a:
+        if isVisibleGrilleDemineur(grille, i) == False:
+            b += 1
+        else:
+            c.add(i)
+    if getContenuGrilleDemineur(grille, coord) == b:
+        for j in c:
+            cell = getCelluleGrilleDemineur(grille, j)
+            cell[const.ANNOTATION] = const.FLAG
+    return c   
+    '''
 
